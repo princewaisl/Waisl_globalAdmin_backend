@@ -40,7 +40,16 @@ const Ticket = sequelize.define('Ticket', {
   categoryType: {
     type: DataTypes.STRING,
     allowNull: true
-  }
+  },
+status: {
+  type: DataTypes.STRING,
+  allowNull: false,
+  defaultValue: "pending"
+},
+admin_remarks: {
+  type: DataTypes.TEXT,
+  allowNull: true
+}
 }, {
   tableName: 'tickets',
   timestamps: false
