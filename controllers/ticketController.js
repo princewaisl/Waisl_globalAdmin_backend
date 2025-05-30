@@ -9,11 +9,12 @@ const createTicket = async (req, res) => {
       sub_category,
       ticketDetails,
       additional_data,
-      attachment,
       categoryType,
       created_by,
-      emp_id
+      emp_id,
+      email_id
     } = req.body;
+    const attachment = req.file ? req.file.path : null;
 
     // Basic validation
     if (!description || !category || !location || !sub_category || !created_by) {
@@ -27,7 +28,7 @@ const createTicket = async (req, res) => {
       sub_category,
       ticketDetails,
       additional_data: additional_data || null,
-      attachment: attachment || null,
+      attachment: attachment, // ✅ Save uploaded file path
       categoryType: categoryType || null,
       status: false,
       created_by,
@@ -36,7 +37,8 @@ const createTicket = async (req, res) => {
       updated_at: null,
       deleted_at: null,
       deleted_by: null,
-      emp_id
+      emp_id,
+      email_id
     });
 
     res.status(201).json({
